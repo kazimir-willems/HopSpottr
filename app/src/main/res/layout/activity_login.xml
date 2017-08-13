@@ -36,6 +36,18 @@
         android:layout_weight="0.85"
         android:background="@drawable/login_background">
 
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/btn_fb_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            xmlns:facebook="http://schemas.android.com/apk/res-auto"
+            facebook:com_facebook_login_text="Login with Facebook"
+            android:layout_margin="32dp"
+            android:textSize="18sp"
+            android:textAlignment="center"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"/>
+
     </RelativeLayout>
 
 

@@ -1,4 +1,4 @@
-package hopspottr.luca.com.hopspottr.ui;
+package hopspottr.luca.com.hopspottr.ui.startup;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

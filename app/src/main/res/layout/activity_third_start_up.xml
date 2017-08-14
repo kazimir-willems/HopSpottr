@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="hopspottr.luca.com.hopspottr.ui.FirstStartUpActivity">
+    tools:context="hopspottr.luca.com.hopspottr.ui.startup.FirstStartUpActivity">
 
     <include
         android:id="@+id/tool_bar"

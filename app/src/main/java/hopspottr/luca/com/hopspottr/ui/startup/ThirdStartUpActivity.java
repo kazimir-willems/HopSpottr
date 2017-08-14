@@ -1,5 +1,6 @@
-package hopspottr.luca.com.hopspottr.ui;
+package hopspottr.luca.com.hopspottr.ui.startup;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import hopspottr.luca.com.hopspottr.R;
+import hopspottr.luca.com.hopspottr.ui.HomeActivity;
 
 public class ThirdStartUpActivity extends AppCompatActivity {
 
@@ -41,7 +43,12 @@ public class ThirdStartUpActivity extends AppCompatActivity {
         btnFinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(ThirdStartUpActivity.this, HomeActivity.class);
 
+                startActivity(intent);
+                overridePendingTransition(R.anim.enter, R.anim.exit);
+
+                finish();
             }
         });
     }

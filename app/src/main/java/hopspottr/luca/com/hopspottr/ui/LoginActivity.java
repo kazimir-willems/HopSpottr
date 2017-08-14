@@ -14,7 +14,6 @@ import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
-import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
@@ -28,6 +27,8 @@ import dmax.dialog.SpotsDialog;
 import hopspottr.luca.com.hopspottr.R;
 import hopspottr.luca.com.hopspottr.event.SignUpEvent;
 import hopspottr.luca.com.hopspottr.task.SignUpTask;
+import hopspottr.luca.com.hopspottr.ui.startup.FirstStartUpActivity;
+import hopspottr.luca.com.hopspottr.util.SharedPrefManager;
 import hopspottr.luca.com.hopspottr.vo.SignUpResponseVo;
 
 public class LoginActivity extends AppCompatActivity {
@@ -36,6 +37,12 @@ public class LoginActivity extends AppCompatActivity {
     private CallbackManager callbackManager;
 
     private AlertDialog progressDlg;
+
+    private String email;
+    private String id;
+    private String firstName;
+    private String lastName;
+    private String source;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,11 +102,11 @@ public class LoginActivity extends AppCompatActivity {
                             // handle error
                         } else {
                             Log.v("JSON Data", response.toString());
-                            String email = me.optString("email");
-                            String id = me.optString("id");
-                            String firstName = me.optString("first_name");
-                            String lastName = me.optString("last_name");
-                            String source = "";
+                            email = me.optString("email");
+                            id = me.optString("id");
+                            firstName = me.optString("first_name");
+                            lastName = me.optString("last_name");
+                            source = "";
                             if(me.optString("cover") != null) {
                                 source = me.optString("cover");
                             }
@@ -143,6 +150,12 @@ public class LoginActivity extends AppCompatActivity {
 
         if(responseVo != null) {
             if(responseVo.success == 1) {
+                String fullName = firstName + " " + lastName;
+                String avatarUrl = "https://graph.facebook.com/" + id + "/picture?type=large";
+
+                SharedPrefManager.getInstance(this).saveFullName(fullName);
+                SharedPrefManager.getInstance(this).saveAvatarUrl(avatarUrl);
+
                 Intent intent = new Intent(LoginActivity.this, FirstStartUpActivity.class);
 
                 startActivity(intent);

@@ -143,9 +143,10 @@ public class LoginActivity extends AppCompatActivity {
 
         if(responseVo != null) {
             if(responseVo.success == 1) {
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                Intent intent = new Intent(LoginActivity.this, FirstStartUpActivity.class);
 
                 startActivity(intent);
+                overridePendingTransition(R.anim.enter, R.anim.exit);
                 finish();
             } else {
                 Log.v("Login Result", responseVo.result);

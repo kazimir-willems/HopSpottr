@@ -27,7 +27,7 @@
             android:gravity="center"
             android:text="Know before you go"
             android:textSize="18sp"
-            android:textColor="@color/black"/>
+            android:textColor="@color/colorBlack"/>
     </LinearLayout>
 
     <RelativeLayout

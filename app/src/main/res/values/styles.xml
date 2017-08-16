@@ -17,6 +17,13 @@
         <item name="android:background">@drawable/button_nextstep</item>
     </style>
 
+    <style name="ButtonInviteFriends">
+        <item name="android:layout_height">36dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:background">@drawable/button_invite</item>
+    </style>
+
     <style name="ToolbarColoredBackArrow" parent="AppTheme">
         <item name="android:textColorSecondary">@color/colorWhite</item>
     </style>

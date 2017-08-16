@@ -5,26 +5,20 @@
     android:layout_height="wrap_content"
     android:background="@color/colorWhite"
     android:gravity="bottom"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:paddingTop="@dimen/nav_header_vertical_spacing"
     android:paddingBottom="@dimen/nav_header_vertical_spacing"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin">
 
-    <com.pkmmte.view.CircularImageView
-        android:id="@+id/iv_photo"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"/>
-
     <TextView
-        android:id="@+id/tv_name"
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:gravity="center"
         android:textSize="18sp"
         android:textColor="@color/colorBlack"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"/>
+        android:text="@string/nothing_trending_for_restaurants"/>
 
 </LinearLayout>

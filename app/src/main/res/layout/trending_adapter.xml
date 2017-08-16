@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingTop="@dimen/nav_header_vertical_spacing"
+    android:paddingBottom="@dimen/nav_header_vertical_spacing"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.3"
+        android:orientation="vertical">
+
+        <com.pkmmte.view.CircularImageView
+            android:id="@+id/iv_photo"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            app:border="true"
+            app:border_color="#EEEEEE"
+            app:border_width="2dp"
+            app:shadow="true"
+            android:layout_gravity="center_horizontal"/>
+
+        <TextView
+            android:id="@+id/tv_follwers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_gravity="center_horizontal"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/str_followers"
+            android:layout_gravity="center_horizontal"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.6"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:singleLine="true"
+                android:text="Super Duper Bugers"/>
+
+            <TextView
+                android:id="@+id/tv_distance"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:gravity="right"
+                android:text="0.1mi"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="865 Market Street, San Francisco"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_crowd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_crowd_orange"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_gravity="center_vertical">
+
+                <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/crowd_level"
+                    android:layout_width="match_parent"
+                    android:layout_height="24dp"
+                    app:rcProgress="60"
+                    app:rcSecondaryProgress="40"
+                    app:rcRadius="4dp"
+                    app:rcBackgroundColor="@color/colorGrey"
+                    app:rcProgressColor="@color/colorOrange"
+                    app:rcSecondaryProgressColor="@color/colorPaleBlue"
+                    app:rcMax="100"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Crowd size"
+                    android:textColor="@color/colorWhite"
+                    android:layout_marginLeft="4dp"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_noise"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_noise"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_gravity="center_vertical">
+
+                <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
+                    android:id="@+id/noise_level"
+                    android:layout_width="match_parent"
+                    android:layout_height="24dp"
+                    app:rcProgress="0"
+                    app:rcSecondaryProgress="0"
+                    app:rcRadius="4dp"
+                    app:rcBackgroundColor="@color/colorGrey"
+                    app:rcSecondaryProgressColor="@color/colorPaleBlue"
+                    app:rcMax="100"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Noise Level"
+                    android:layout_marginLeft="4dp"/>
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_wait"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_wait"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_gravity="center_vertical">
+
+                <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
+                    android:id="@+id/wait_level"
+                    android:layout_width="match_parent"
+                    android:layout_height="24dp"
+                    app:rcProgress="0"
+                    app:rcSecondaryProgress="0"
+                    app:rcRadius="4dp"
+                    app:rcBackgroundColor="@color/colorGrey"
+                    app:rcSecondaryProgressColor="@color/colorPaleBlue"
+                    app:rcMax="100"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Wait time"
+                    android:layout_marginLeft="4dp"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.1"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/ic_next"/>
+
+</LinearLayout>

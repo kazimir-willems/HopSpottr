@@ -16,9 +16,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.nostra13.universalimageloader.core.ImageLoader;
+import com.pkmmte.view.CircularImageView;
+import com.squareup.picasso.Picasso;
 
-import de.hdodenhof.circleimageview.CircleImageView;
+import hopspottr.luca.com.hopspottr.HopSpottrApplication;
 import hopspottr.luca.com.hopspottr.R;
 import hopspottr.luca.com.hopspottr.fragment.ActivityFragment;
 import hopspottr.luca.com.hopspottr.fragment.FavoriteFragment;
@@ -31,7 +32,7 @@ public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private TextView tvFullName;
-    private ImageView ivPhoto;
+    private CircularImageView ivPhoto;
 
     private ImageView ivSearch;
     private ImageView ivNews;
@@ -44,6 +45,8 @@ public class HomeActivity extends AppCompatActivity
     private LinearLayout trendingLayout;
     private LinearLayout favoriteLayout;
     private LinearLayout activityLayout;
+
+    private boolean bShowTrack = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,10 +83,13 @@ public class HomeActivity extends AppCompatActivity
         View header = navigationView.getHeaderView(0);
 
         tvFullName = (TextView) header.findViewById(R.id.tv_name);
-        ivPhoto = (ImageView) header.findViewById(R.id.iv_photo);
+        ivPhoto = (CircularImageView) header.findViewById(R.id.iv_photo);
 
         tvFullName.setText(SharedPrefManager.getInstance(this).getFullName());
-        ImageLoader.getInstance().displayImage(SharedPrefManager.getInstance(this).getAvatarUrl(), ivPhoto);
+        Picasso.with(this)
+                .load(SharedPrefManager.getInstance(this).getAvatarUrl())
+                .into(ivPhoto);
+        //ImageLoader.getInstance().displayImage(SharedPrefManager.getInstance(this).getAvatarUrl(), ivPhoto, HopSpottrApplication.img_opt_photo);
 
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.content_fragment, SearchFragment.newInstance("", ""))
@@ -100,6 +106,8 @@ public class HomeActivity extends AppCompatActivity
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.content_fragment, SearchFragment.newInstance("", ""))
                         .commit();
+                bShowTrack = false;
+                HomeActivity.this.invalidateOptionsMenu();
             }
         });
 
@@ -113,6 +121,9 @@ public class HomeActivity extends AppCompatActivity
                         .replace(R.id.content_fragment, NewsFragment.newInstance("", ""))
                         .commit();
                 getSupportActionBar().setTitle(R.string.title_news_feed);
+
+                bShowTrack = false;
+                HomeActivity.this.invalidateOptionsMenu();
             }
         });
 
@@ -127,6 +138,9 @@ public class HomeActivity extends AppCompatActivity
                         .commit();
 
                 getSupportActionBar().setTitle(R.string.title_trending);
+
+                bShowTrack = true;
+                HomeActivity.this.invalidateOptionsMenu();
             }
         });
 
@@ -140,6 +154,9 @@ public class HomeActivity extends AppCompatActivity
                         .replace(R.id.content_fragment, FavoriteFragment.newInstance("", ""))
                         .commit();
                 getSupportActionBar().setTitle(R.string.title_favorites);
+
+                bShowTrack = true;
+                HomeActivity.this.invalidateOptionsMenu();
             }
         });
 
@@ -153,6 +170,9 @@ public class HomeActivity extends AppCompatActivity
                         .replace(R.id.content_fragment, ActivityFragment.newInstance("", ""))
                         .commit();
                 getSupportActionBar().setTitle(R.string.title_activity);
+
+                bShowTrack = false;
+                HomeActivity.this.invalidateOptionsMenu();
             }
         });
     }
@@ -173,6 +193,20 @@ public class HomeActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.home_menu, menu);
+        if (menu != null) {
+            if(!bShowTrack) {
+                menu.findItem(R.id.menu_track_location).setVisible(false);
+            } else {
+                menu.findItem(R.id.menu_track_location).setVisible(true);
+            }
+        }
+
+        return true;
     }
 
     @Override

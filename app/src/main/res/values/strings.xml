@@ -33,6 +33,20 @@
     <string name="title_favorites">Favorites</string>
     <string name="title_activity">Activity</string>
 
+    <string name="btn_restaurants">Restaurants</string>
+    <string name="btn_bars_nightlife">Bars &amp; Nightlife</string>
+    <string name="btn_coffee_tea">Coffee &amp; Tea</string>
+    <string name="btn_hookah_bars">Hookah Bars</string>
+
+    <string name="str_followers">followers</string>
+
+    <string name="footer_title">Hopspottr is so much more fun with friends!</string>
+
+    <string name="nothing_trending_for_restaurants">Nothing is trending for Restaurants.\nCheck back later.</string>
+    <string name="nothing_trending_for_bars">Nothing is trending for Bars &amp; Nightlife.\nCheck back later.</string>
+    <string name="nothing_trending_for_coffee">Nothing is trending for Coffee &amp; Tea.\nCheck back later.</string>
+    <string name="nothing_trending_for_hookah">Nothing is trending for Hookah Bars.\nCheck back later.</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

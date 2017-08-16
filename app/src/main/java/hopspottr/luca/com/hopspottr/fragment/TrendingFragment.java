@@ -4,43 +4,46 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import hopspottr.luca.com.hopspottr.R;
+import hopspottr.luca.com.hopspottr.adapter.TrendingAdapter;
+import hopspottr.luca.com.hopspottr.model.TrendingItem;
+import hopspottr.luca.com.hopspottr.util.SharedPrefManager;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link TrendingFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link TrendingFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class TrendingFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private ListView listItems;
+
+    private TextView btnRestaurants;
+    private TextView btnBars;
+    private TextView btnCoffee;
+    private TextView btnHookahBars;
+
+    private Button btnInvite;
+    private TextView tvHeaderTitle;
+    private TrendingAdapter adapter;
 
     public TrendingFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment TrendingFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static TrendingFragment newInstance(String param1, String param2) {
         TrendingFragment fragment = new TrendingFragment();
         Bundle args = new Bundle();
@@ -63,6 +66,86 @@ public class TrendingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_trending, container, false);
+        View v = inflater.inflate(R.layout.fragment_trending, container, false);
+
+        adapter = new TrendingAdapter(getActivity());
+
+        adapter.addData(new TrendingItem(SharedPrefManager.getInstance(getActivity()).getAvatarUrl(), 40, "Westfield San Francisco", 1.3f, "865 Market Street, San Francisco", 5, 5, 5));
+
+        listItems = (ListView) v.findViewById(R.id.list_item);
+
+        View footerView =  inflater.inflate(R.layout.footer, null, false);
+        View headerView =  inflater.inflate(R.layout.header, null, false);
+        listItems.addFooterView(footerView);
+        //listItems.addHeaderView(headerView);
+
+        listItems.setAdapter(adapter);
+
+        btnRestaurants = (TextView) v.findViewById(R.id.btn_restaurant);
+        btnBars = (TextView) v.findViewById(R.id.btn_bars_nightlife);
+        btnCoffee = (TextView) v.findViewById(R.id.btn_coffee_tea);
+        btnHookahBars = (TextView) v.findViewById(R.id.btn_hookah_bars);
+
+        adapter.notifyDataSetChanged();
+
+        initUI();
+
+        return v;
+    }
+
+    private void initUI() {
+        btnRestaurants.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setDefaultBackground();
+
+                btnRestaurants.setBackground(getResources().getDrawable(R.drawable.button_item_pressed));
+                btnRestaurants.setTextColor(getResources().getColor(R.color.colorWhite));
+            }
+        });
+
+        btnBars.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setDefaultBackground();
+
+                btnBars.setBackground(getResources().getDrawable(R.drawable.button_item_pressed));
+                btnBars.setTextColor(getResources().getColor(R.color.colorWhite));
+            }
+        });
+
+        btnCoffee.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setDefaultBackground();
+
+                btnCoffee.setBackground(getResources().getDrawable(R.drawable.button_item_pressed));
+                btnCoffee.setTextColor(getResources().getColor(R.color.colorWhite));
+            }
+        });
+
+        btnHookahBars.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setDefaultBackground();
+
+                btnHookahBars.setBackground(getResources().getDrawable(R.drawable.button_item_pressed));
+                btnHookahBars.setTextColor(getResources().getColor(R.color.colorWhite));
+            }
+        });
+    }
+
+    private void setDefaultBackground() {
+        btnRestaurants.setBackground(getResources().getDrawable(R.drawable.button_item));
+        btnRestaurants.setTextColor(getResources().getColor(R.color.colorBlack));
+
+        btnBars.setBackground(getResources().getDrawable(R.drawable.button_item));
+        btnBars.setTextColor(getResources().getColor(R.color.colorBlack));
+
+        btnCoffee.setBackground(getResources().getDrawable(R.drawable.button_item));
+        btnCoffee.setTextColor(getResources().getColor(R.color.colorBlack));
+
+        btnHookahBars.setBackground(getResources().getDrawable(R.drawable.button_item));
+        btnHookahBars.setTextColor(getResources().getColor(R.color.colorBlack));
     }
 }

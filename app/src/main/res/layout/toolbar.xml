@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.Toolbar android:layout_height="wrap_content"
-    android:layout_width="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/colorPaleBlue"
-    app:theme="@style/ToolbarColoredBackArrow"
-    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+<android.support.v7.widget.Toolbar
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:titleTextColor="@color/colorWhite"
+    android:background="@color/colorPrimary"
+    style="@style/Widget.MyApp.ActionBar"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="48dp"
-        android:layout_gravity="center"
-        android:src="@drawable/app_logo"/>
-
-    </RelativeLayout>
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/app_logo"/>
 
 </android.support.v7.widget.Toolbar>

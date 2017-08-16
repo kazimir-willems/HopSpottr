@@ -26,16 +26,12 @@
         </activity>
         <activity android:name=".ui.MainActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".ui.startup.FirstStartUpActivity"
-            android:screenOrientation="portrait"/>
         <activity android:name=".ui.startup.SecondStartUpActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".ui.startup.ThirdStartUpActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".ui.HomeActivity"
-            android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme"
+            android:name=".ui.startup.FirstStartUpActivity"
             android:screenOrientation="portrait"></activity>
     </application>
 

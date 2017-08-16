@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import hopspottr.luca.com.hopspottr.R;
-import hopspottr.luca.com.hopspottr.ui.HomeActivity;
+import hopspottr.luca.com.hopspottr.ui.MainActivity;
 
 public class ThirdStartUpActivity extends AppCompatActivity {
 
@@ -26,6 +26,7 @@ public class ThirdStartUpActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("");
 
         initUI();
     }
@@ -43,7 +44,7 @@ public class ThirdStartUpActivity extends AppCompatActivity {
         btnFinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ThirdStartUpActivity.this, HomeActivity.class);
+                Intent intent = new Intent(ThirdStartUpActivity.this, MainActivity.class);
 
                 startActivity(intent);
                 overridePendingTransition(R.anim.enter, R.anim.exit);

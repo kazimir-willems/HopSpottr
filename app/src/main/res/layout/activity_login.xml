@@ -9,44 +9,57 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        android:layout_weight="0.15">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
+            android:layout_height="64dp"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="0.7"
             android:src="@drawable/app_logo"/>
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.3"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:gravity="center"
             android:text="Know before you go"
+            android:layout_marginTop="-8dp"
             android:textSize="18sp"
             android:textColor="@color/colorBlack"/>
     </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.85"
-        android:background="@drawable/login_background">
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/activity_vertical_margin">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/login_background"
+            android:scaleType="centerCrop"/>
 
         <com.facebook.login.widget.LoginButton
             android:id="@+id/btn_fb_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             xmlns:facebook="http://schemas.android.com/apk/res-auto"
-            facebook:com_facebook_login_text="Login with Facebook"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
             android:layout_margin="32dp"
             android:textSize="18sp"
             android:textAlignment="center"
+            android:visibility="gone"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"/>
+
+        <Button
+            android:id="@+id/btn_facebook"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="32dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/facebook_login"/>
 
     </RelativeLayout>
 

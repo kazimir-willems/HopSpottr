@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -34,6 +36,7 @@ import hopspottr.luca.com.hopspottr.vo.SignUpResponseVo;
 public class LoginActivity extends AppCompatActivity {
 
     private LoginButton btnFbLogin;
+    private Button btnFacebook;
     private CallbackManager callbackManager;
 
     private AlertDialog progressDlg;
@@ -52,6 +55,7 @@ public class LoginActivity extends AppCompatActivity {
         progressDlg = new SpotsDialog(LoginActivity.this);
 
         btnFbLogin = (LoginButton) findViewById(R.id.btn_fb_login);
+        btnFacebook = (Button) findViewById(R.id.btn_facebook);
         facebookSDKInitialize();
 
         AccessToken token = AccessToken.getCurrentAccessToken();
@@ -76,6 +80,13 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onError(FacebookException error) {
+            }
+        });
+
+        btnFacebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                btnFbLogin.performClick();
             }
         });
     }

@@ -37,6 +37,6 @@ dependencies {
     compile 'com.akexorcist:RoundCornerProgressBar:2.0.3'
     compile 'com.android.support:support-v4:25.3.1'
     testCompile 'junit:junit:4.12'
-    compile 'com.facebook.android:facebook-android-sdk:4.25.0'
+    compile 'com.facebook.android:facebook-android-sdk:[4,5)'
     compile 'com.yarolegovich:sliding-root-nav:1.0.2'
 }

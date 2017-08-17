@@ -1,10 +1,12 @@
 package hopspottr.luca.com.hopspottr.ui;
 
+import android.graphics.Rect;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -12,7 +14,10 @@ import android.widget.TextView;
 
 import com.pkmmte.view.CircularImageView;
 import com.squareup.picasso.Picasso;
+import com.yarolegovich.slidingrootnav.SlidingRootNav;
 import com.yarolegovich.slidingrootnav.SlidingRootNavBuilder;
+import com.yarolegovich.slidingrootnav.SlidingRootNavLayout;
+import com.yarolegovich.slidingrootnav.callback.DragStateListener;
 
 import hopspottr.luca.com.hopspottr.R;
 import hopspottr.luca.com.hopspottr.fragment.ActivityFragment;
@@ -42,13 +47,18 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvTitle;
 
     private boolean bShowTrack = false;
+    private SlidingRootNav slidingRootNav;
+    private LinearLayout rootDrawer;
+
+    private boolean inDrag;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         ivSearch = (ImageView) findViewById(R.id.iv_search);
@@ -65,19 +75,22 @@ public class MainActivity extends AppCompatActivity {
 
         tvTitle = (TextView) findViewById(R.id.toolbar_title);
 
-        new SlidingRootNavBuilder(this)
+        /*slidingRootNav = new SlidingRootNavBuilder(this)
                 .withDragDistance(220)
                 .withRootViewScale(1.0f)
                 .withToolbarMenuToggle(toolbar)
                 .withMenuOpened(false)
                 .withSavedState(savedInstanceState)
                 .withMenuLayout(R.layout.menu_drawer)
-                .inject();
+                .inject();*/
 
+        initSlideMenu();
         initUI();
 
         tvFullName = (TextView) findViewById(R.id.tv_name);
         ivPhoto = (CircularImageView) findViewById(R.id.iv_photo);
+
+        rootDrawer = (LinearLayout) findViewById(R.id.root_drawer);
 
         tvFullName.setText(SharedPrefManager.getInstance(this).getFullName());
         Picasso.with(this)
@@ -207,5 +220,42 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void initSlideMenu() {
+        slidingRootNav = new SlidingRootNavBuilder(this)
+                .addDragStateListener(new DragStateListener() {
+                    @Override
+                    public void onDragStart() {
+                        inDrag = true;
+                    }
+
+                    @Override
+                    public void onDragEnd(boolean isMenuOpened) {
+                        inDrag = false;
+                    }
+                })
+                .withDragDistance(220)
+                .withRootViewScale(1.0f)
+                .withToolbarMenuToggle(toolbar)
+                .withMenuOpened(false)
+                .withMenuLayout(R.layout.menu_drawer)
+                .inject();
+
+        SlidingRootNavLayout layout = slidingRootNav.getLayout();
+        rootDrawer = (LinearLayout) layout.findViewById(R.id.root_drawer);
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (!inDrag && slidingRootNav != null && rootDrawer != null && !slidingRootNav.isMenuHidden()) {
+            boolean menuTouched = rootDrawer.dispatchTouchEvent(ev);
+            if (!menuTouched) {
+                slidingRootNav.closeMenu();
+            }
+            return true;
+        } else {
+            return super.dispatchTouchEvent(ev);
+        }
     }
 }
